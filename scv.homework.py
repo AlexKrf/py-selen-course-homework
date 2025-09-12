@@ -5,6 +5,13 @@ from selenium.webdriver.common.by import By
 import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
+import pytest
+
+loginContainer = "//div[@id='login-container']"
+registerContainer = "//div[@id='register-container']"
+toggle = "//p"
+button = "//button"
 
 data =[
     ["username","password"],
@@ -25,21 +32,25 @@ with open("users.scv", "r", newline="") as file:
     reader = csv.reader(file)
     next(reader)
 
+    #driver.find_element(By.XPATH, loginContainer + toggle).click()
+
     for row in reader:
         username, password = row
-        driver.find_element(By.XPATH, "/html/body/div[1]/p").click()
+        driver.find_element(By.XPATH, loginContainer + toggle).click()
+        driver.find_element(By.ID, "register-username").clear()
         driver.find_element(By.ID, "register-username").send_keys(username)
+        driver.find_element(By.ID, "register-password").clear()
         driver.find_element(By.ID, "register-password").send_keys(password)
-        driver.find_element(By.XPATH, "/html/body/div[2]/button").click()
+        driver.find_element(By.XPATH, registerContainer+button).click()
+        #time.sleep(2)
         alert = driver.switch_to.alert
         alert.accept()
-    for row in reader:
-        username, password = row
-        driver.find_element(By.XPATH, "/html/body/div[2]/p").click()
+        driver.find_element(By.ID, "login-username").clear()
         driver.find_element(By.ID, "login-username").send_keys(username)
+        driver.find_element(By.ID, "login-password").clear()
         driver.find_element(By.ID, "login-password").send_keys(password)
-        driver.find_element(By.XPATH, "/html/body/div[1]/button").click()
+        driver.find_element(By.XPATH, loginContainer + button).click()
         alert = driver.switch_to.alert
         alert.accept()
 
-        time.sleep (5)
+        #time.sleep (2)
