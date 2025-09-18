@@ -32,8 +32,6 @@ with open("users.scv", "r", newline="") as file:
     reader = csv.reader(file)
     next(reader)
 
-    #driver.find_element(By.XPATH, loginContainer + toggle).click()
-
     for row in reader:
         username, password = row
         driver.find_element(By.XPATH, loginContainer + toggle).click()
