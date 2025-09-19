@@ -51,10 +51,10 @@ def test_questions(browser):
     lName_field = browser.find_element(By.XPATH, '//input[@aria-label="Last name"]')
     lName_field.send_keys(last_name)
 
-    country_selector = driver.find_element(By.XPATH, '//button[@data-hook="country-selector-trigger"]')
+    country_selector = browser.find_element(By.XPATH, '//button[@data-hook="country-selector-trigger"]')
     country_selector.click()
 
-    israel_selector = driver.find_element(By.XPATH, '//span[@aria-label="Israel"]')
+    israel_selector = browser.find_element(By.XPATH, '//span[@aria-label="Israel"]')
     israel_selector.click()
 
     phone_field = browser.find_element(By.XPATH, '//input[@aria-label="Phone. Phone"]')
