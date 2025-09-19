@@ -42,7 +42,7 @@ def test_book_buttons(browser):
     schedule_calendar = WebDriverWait(browser, 10).until(
         EC.presesence_of_element_located(By.XPATH, '//h1[@id]')
     )
-    assert schedule_calendar.is_displayed(), "No schedule not displayed"
+    assert schedule_calendar.is_displayed(), "No schedule displayed"
 
 def test_questions(browser):
     name_field = browser.find_element(By.XPATH, '//input[@aria-label="First name"]')
